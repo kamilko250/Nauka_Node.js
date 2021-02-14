@@ -1,7 +1,7 @@
 const express = require('express');
-const port = 8000;
-const app = express();
 
+const app = express();
+app.listen(process.env.PORT);
 app.all('/', function (req, res)
 {
     res.send('Hello world!');
@@ -20,4 +20,3 @@ app.get('/api/random/min/:min/max/:max', function (req, res)
     var randomNumber =(( Math.random() * max ) + min )% max;
     res.send({randomNumber});
 });
-app.listen(port, ()=> console.log(port));
