@@ -13,7 +13,7 @@ app.post('/', function(request, response){
     min = Number(request.body.number.min);
     max = Number(request.body.number.max);
     var randomNumber =( Math.random() * max) + min;
-    res.send({randomNumber});
+    response.send({randomNumber});
 });
 
 
