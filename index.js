@@ -17,6 +17,6 @@ app.get('/api/random/min/:min/max/:max', function (req, res)
 {
     var min = Number(req.params.min);
     var max = Number(req.params.max);
-    var randomNumber =(( Math.random() * max ) + min )% max;
+    var randomNumber =( Math.random() * max) + min;
     res.send({randomNumber});
 });
