@@ -1,24 +1,29 @@
 const express = require('express');
-
+var path = require('path');
 const app = express();
-app.listen(process.env.PORT);
-
-app.use(express.urlencoded());
-app.use(express.json());
+app.listen(8000);
+app.set('view engine','ejs');
+app.set('views', path.join(__dirname, 'views'));
+//app.listen(process.env.PORT);
 
 var min = 0;
 var max = 0;
+var randomNumber =0;
 
-app.post('/', function(request, response){
+app.post('/randomBetween', function(request, response){
     min = Number(request.body.number.min);
     max = Number(request.body.number.max);
-    var randomNumber = (Math.random() * max % (max-min) ) + min ;
-    response.send({randomNumber});
+    randomNumber = (Math.random() * max % (max-min) ) + min;
+    res.render('/template.ejs', {number: randomNumber});
 });
 
 
-app.get('/', function (req, res)
+app.get('/random', function (req, res)
 {
-    var randomNumber = Math.random();
-    res.send({randomNumber});
+    randomNumber = Math.random();
+    res.render('/mainView.ejs', {number: randomNumber});
+});
+app.get('/',function(req,res)
+{
+    res.render('home.ejs');
 });
