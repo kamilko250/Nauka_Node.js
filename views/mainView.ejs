@@ -4,19 +4,21 @@
 <body>
     <div>
         <h1>Losowa liczba zakres 0 - 1</h1>
-        <form action="https://randomnumbergenfresh.herokuapp.com/" method="get">
+        <form action="/random/" method="post">
             <input type="submit" value="Submit">
         </form> 
+        <h1><%- numberRnd %></h1>
     </div>
     
     <div>
         <h1>Losowa liczba między min a max</h1>
-        <form action="https://randomnumbergenfresh.herokuapp.com/" method="post">
+        <form action="/randomBetween" method="post">
             <label for="fname">Min</label><br>
             <input type="number" name="number[min]" value="0"><br>
             <label for="lname">Max</label><br>
             <input type="number" name="number[max]" value="0"><br><br>
             <input type="submit" value="Submit">
-          </form> 
+        </form> 
+        <h1><%- numberRnd_ %></h1>
     </div>
 </body>
