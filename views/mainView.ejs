@@ -21,4 +21,12 @@
         </form> 
         <h1><%- numberRnd_ %></h1>
     </div>
+    <div>
+        <h1>Wrzuc plik</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="textfile" value="Wybierz plik">
+            <input type="submit" value="Submit">
+        </form> 
+        <h1><%- numberRndFile_ %></h1>
+    </div>
 </body>
