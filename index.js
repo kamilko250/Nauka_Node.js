@@ -4,7 +4,7 @@ const fs = require('fs');
 const app = express();
 var fileupload = require("express-fileupload");
 app.use(fileupload());
-//app.listen(8000);
+app.listen(8000);
 app.listen(process.env.PORT);
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -23,10 +23,14 @@ app.post('/randomBetween', function(req, res){
     randomNumber = (Math.random() * max % (max-min) ) + min;
     res.render('mainView.ejs', {numberRnd: randomNum, numberRnd_: randomNumber, numberRndFile_: randomNumFile});
 });
-app.get('/', function (req, res)
+app.get('/',function(req,res) 
+{
+    res.render('basicView.ejs');
+})
+/*app.get('/', function (req, res)
 {
     res.render('mainView.ejs', {numberRnd: randomNum, numberRnd_: randomNumber, numberRndFile_: randomNumFile});
-});
+});*/
 
 app.post('/random', function (req, res)
 {
