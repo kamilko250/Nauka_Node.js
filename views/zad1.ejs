@@ -1,0 +1,47 @@
+<head>
+    <title>FreshDev</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+<body>
+    <div style="margin-bottom:0" style="max-height: 50" >
+        <h1 style="text-align: center" >FreshDev</h1> 
+      </div>
+      
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Strona główna</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/zad1">Zadanie 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/zad2">Zadanie 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/zad3">Zadanie 3</a>
+            </li>    
+          </ul>
+        </div>  
+      </nav>
+    <div>
+        <h2>Losowa liczba między min a max</h2>
+        <form action="/zad1" method="post">
+          <label for="fname">Min</label><br>
+          <input type="number" name="number[min]" value="0"><br>
+          <label for="lname">Max</label><br>
+          <input type="number" name="number[max]" value="0"><br><br>
+          <input type="submit" value="Submit">
+        </form> 
+        <h1><%- number %></h1>
+    </div>
+</body>
