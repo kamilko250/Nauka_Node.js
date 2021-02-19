@@ -5,14 +5,14 @@ const fs = require('fs');
 const app = express();
 var fileupload = require("express-fileupload");
 app.use(fileupload());
-//app.listen(8000);
+app.listen(8000);
 app.listen(process.env.PORT);
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-https.createServer(options);
+https.createServer();
 
 app.get('/',function(req,res) 
 {
