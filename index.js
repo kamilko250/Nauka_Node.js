@@ -1,6 +1,7 @@
 var path = require('path');
 var fileupload = require("express-fileupload");
 const fs = require('fs');
+const readline = require('readline');
 const https = require('http');
 const express = require('express');
 const app = express();
@@ -19,12 +20,17 @@ const options = {
 
 var server = https.createServer(options, app);
 
-//pp.listen(443);
+app.listen(443);
 app.listen(process.env.PORT);
+
+const rl = readline.createInterface({
+    input: fs.createReadStream('logs.txt'),
+    crlfDelay: Infinity
+  });
 
 var middleware = function(req, res, next)
 {
-    fs.appendFile('logs.txt',req.ip + '\n' ,function(){});
+    fs.appendFile('logs.txt', req.ip + '\n', function(){});
     //console.log(req.ip);
     next();
 };
@@ -90,7 +96,20 @@ app.get("/no_results/wyniki",function(req,res)
 {
     res.download('no_results/wyniki.txt');
 });
+app.post('/zad3',function(req,res)
+{
+    let array = [];
+    var step = 0;
+    var steps = req.body.ile_logow;
+    rl.on('line', (line) => {
+        array.push(line);
+        console.log(line);
+      });
+    console.log(array.length);
+    res.render('zad3.ejs',{logs: array});
+});
 app.get('/zad3',function(req,res)
 {
-    res.send('zad3 nie zostalo jeszcze dodane');
-});
+    res.render('zad3.ejs');
+})
+
