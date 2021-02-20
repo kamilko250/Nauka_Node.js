@@ -4,6 +4,7 @@ const fs = require('fs');
 const https = require('http');
 const express = require('express');
 const app = express();
+const url = require('url');
 var fileNum = 0;
 const options = {
    key: fs.readFileSync(__dirname + '/private.key', 'utf8'),
@@ -36,7 +37,7 @@ app.post('/zad1',function(req,res)
 });
 app.get('/zad2', function(req,res)
 {
-    res.render('zad2.ejs',{number: 0});
+    res.render('zad2.ejs');
 });
 app.post('/zad2',function(req,res)
 {
@@ -63,19 +64,22 @@ app.post('/zad2',function(req,res)
         }
         console.log("succes");
     });
-
+    
     fs.readFile(filePath ,function(err,data){
         if(err)
         {
             console.log(err);
             return;
         }
+        var link = url.pathToFileURL(filePath);
         console.log(data.toString());
-        res.download(filePath);
+        console.log(link.href);
+        res.render('zad2.ejs',{link: "/no_results/wyniki.txt"});
     });
-    
-    
-    //res.render('zad2.ejs',{number: randomNum});
+});
+app.get('/no_results/wyniki.txt',function(req,res)
+{
+    res.download('no_results/wynik.txt');
 });
 app.get('/zad3',function(req,res)
 {

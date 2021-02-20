@@ -36,8 +36,11 @@
       <div style="text-align: center;">
         <p>Wrzuc plik (zawartość: minimum,maximum (np. 2,3 wylosuje od 2 do 3))</p>
         <form action="/zad2" method="post" enctype="multipart/form-data">
-          <input type="file" name="textfile" value="Wybierz plik">
-          <input type="submit" value="Wyślij">
+          <input type="file" name="textfile" value="Wybierz plik"><br><br>
+          <input type="submit" value="Wyślij"><br>
         </form> 
+        <% if(typeof link !== 'undefined') { %>
+        <a href="<%= link %>" >link do wyniku</a> 
+        <% } %>
       </div>
 </div>
