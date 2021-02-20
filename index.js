@@ -5,40 +5,51 @@ const https = require('http');
 const express = require('express');
 const app = express();
 const url = require('url');
-var fileNum = 0;
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(fileupload());
+app.set('view engine','ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('trust proxy', true);
+
 const options = {
    key: fs.readFileSync(__dirname + '/private.key', 'utf8'),
   cert: fs.readFileSync(__dirname + '/public.crt', 'utf8')
 };
+
 var server = https.createServer(options, app);
 
-app.use(fileupload());
-//app.listen(443);
+//pp.listen(443);
 app.listen(process.env.PORT);
-app.set('view engine','ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
 
-app.get('/',function(req,res) 
+var middleware = function(req, res, next)
+{
+    fs.appendFile('logs.txt',req.ip + '\n' ,function(){});
+    //console.log(req.ip);
+    next();
+};
+app.use(middleware);
+
+app.get('/', function(req, res) 
 {
     res.render('basicView.ejs');
 });
-app.get('/zad1',function(req,res)
+app.get('/zad1', function(req, res)
 {
     res.render('zad1.ejs',{number: 0 });
 });
-app.post('/zad1',function(req,res)
+app.get('/zad2', function(req,res)
+{
+    res.render('zad2.ejs');
+});
+app.post('/zad1', function(req, res)
 {
     min = Number(req.body.number.min);
     max = Number(req.body.number.max);
     var randomNumber = (Math.random() * max % (max-min) ) + min;
     res.render('zad1.ejs',{number: randomNumber });
 });
-app.get('/zad2', function(req,res)
-{
-    res.render('zad2.ejs');
-});
+
 app.post('/zad2',function(req,res)
 {
     var file;
@@ -47,39 +58,37 @@ app.post('/zad2',function(req,res)
         res.send("File was not found");
          return;
     }
+    var filePath = path.join(__dirname + "/no_results/wynik.txt");
     file = req.files.textfile;  // here is the field name of the form
     str = file.data.toString('utf-8');
     var tab = str.split(',');
     var min1 = Number(tab[0]);
     var max1 = Number(tab[1]);
-    randomNum = (Math.random() * max1 % (max1-min1) ) + min1;
 
-    var filePath = path.join(__dirname + "/no_results/wynik.txt");
-
-    fs.writeFile(filePath, randomNum.toString(), function(err)
+    fs.writeFile(__dirname + "/no_results/wyniki.txt", "", function(err)
     {
         if(err)
         {
-            return console.log(err);
-        }
-        console.log("succes");
+            return console.log(err + 'blad w write');
+        } 
     });
-    
-    fs.readFile(filePath ,function(err,data){
-        if(err)
+
+    for(step = 0; step < req.body.ile_liczb; step++)
+    {
+        let randomNum = (Math.random() * max1 % (max1-min1) ) + min1;
+        fs.appendFile(__dirname + "/no_results/wyniki.txt", randomNum.toString() + '\n', function(err)
         {
-            console.log(err);
-            return;
-        }
-        var link = url.pathToFileURL(filePath);
-        console.log(data.toString());
-        console.log(link.href);
-        res.render('zad2.ejs',{link: "/no_results/wyniki.txt"});
-    });
+            if(err)
+            {
+                return console.log(err + 'blad w append');
+            } 
+        });
+    }
+    res.render('zad2.ejs', {link: "/no_results/wyniki"});
 });
-app.get('/no_results/wyniki.txt',function(req,res)
+app.get("/no_results/wyniki",function(req,res)
 {
-    res.download('no_results/wynik.txt');
+    res.download('no_results/wyniki.txt');
 });
 app.get('/zad3',function(req,res)
 {

@@ -37,6 +37,8 @@
         <p>Wrzuc plik (zawartość: minimum,maximum (np. 2,3 wylosuje od 2 do 3))</p>
         <form action="/zad2" method="post" enctype="multipart/form-data">
           <input type="file" name="textfile" value="Wybierz plik"><br><br>
+          <label for="lname">Ile liczb wygenerować</label><br>
+          <input type="number" name="ile_liczb" value="Ilość liczb"><br><br>
           <input type="submit" value="Wyślij"><br>
         </form> 
         <% if(typeof link !== 'undefined') { %>
