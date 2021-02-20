@@ -4,7 +4,6 @@ const fs = require('fs');
 const https = require('https');
 const express = require('express');
 const app = express();
-const port = 3000;
 
 const options = {
    key: fs.readFileSync(__dirname + '/private.key', 'utf8'),
@@ -13,8 +12,8 @@ const options = {
 var server = https.createServer(options, app);
 
 app.use(fileupload());
-
-app.listen(port);
+//app.listen(8000);
+app.listen(process.env.PORT);
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
