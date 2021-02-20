@@ -33,16 +33,15 @@
           </ul>
         </div>  
       </nav>
-    <div style="text-align: center;">
-        <h2>Losowa liczba między min a max</h2>
+    <div style="text-align: center;" style="margin:5;">
+        <p>Losowa liczba między min a max</p>
         <form action="/zad1" method="post">
           <label for="fname">Min</label><br>
           <input type="number" name="number[min]" value="0"><br>
           <label for="lname">Max</label><br>
           <input type="number" name="number[max]" value="0"><br><br>
-          <input type="submit" value="Submit">
+          <input type="submit" value="Wyślij">
         </form> 
-        <h2>Wynik</h2>
-        <h3><%- number %></h3>
+        <p>Wynik: <%- number %></p>
     </div>
 </body>
