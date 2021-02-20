@@ -1,18 +1,27 @@
 var path = require('path');
-//const https = require('https');
-const express = require('express');
-const fs = require('fs');
-const app = express();
 var fileupload = require("express-fileupload");
+const fs = require('fs');
+const https = require('https');
+const express = require('express');
+const app = express();
+
+
+// readFileSync function must use __dirname get current directory
+// require use ./ refer to current directory.
+
+const options = {
+   key: fs.readFileSync(__dirname + '/private.key', 'utf8'),
+  cert: fs.readFileSync(__dirname + '/public.crt', 'utf8')
+};
+ var server = https.createServer(options, app);
+
 app.use(fileupload());
-app.listen(8000);
+//app.listen(8000);
 app.listen(process.env.PORT);
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
-//https.createServer();
 
 app.get('/',function(req,res) 
 {
