@@ -4,7 +4,7 @@ const fs = require('fs');
 const https = require('http');
 const express = require('express');
 const app = express();
-
+var fileNum = 0;
 const options = {
    key: fs.readFileSync(__dirname + '/private.key', 'utf8'),
   cert: fs.readFileSync(__dirname + '/public.crt', 'utf8')
@@ -12,7 +12,7 @@ const options = {
 var server = https.createServer(options, app);
 
 app.use(fileupload());
-//app.listen(443);
+app.listen(443);
 app.listen(process.env.PORT);
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -52,7 +52,30 @@ app.post('/zad2',function(req,res)
     var min1 = Number(tab[0]);
     var max1 = Number(tab[1]);
     randomNum = (Math.random() * max1 % (max1-min1) ) + min1;
-    res.render('zad2.ejs',{number: randomNum});
+
+    var filePath = path.join(__dirname + "/no_results/wynik.txt");
+
+    fs.writeFile(filePath, randomNum.toString(), function(err)
+    {
+        if(err)
+        {
+            return console.log(err);
+        }
+        console.log("succes");
+    });
+
+    fs.readFile(filePath ,function(err,data){
+        if(err)
+        {
+            console.log(err);
+            return;
+        }
+        console.log(data.toString());
+        res.download(filePath);
+    });
+    
+    
+    //res.render('zad2.ejs',{number: randomNum});
 });
 app.get('/zad3',function(req,res)
 {
