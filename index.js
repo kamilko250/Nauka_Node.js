@@ -12,8 +12,8 @@ const options = {
 var server = https.createServer(options, app);
 
 app.use(fileupload());
-//app.listen(8000);
 app.listen(443);
+app.listen(process.env.PORT);
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
