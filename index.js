@@ -98,18 +98,15 @@ app.get("/no_results/wyniki",function(req,res)
 });
 app.post('/zad3',function(req,res)
 {
-    let array = [];
-    var step = 0;
-    var steps = req.body.ile_logow;
-    rl.on('line', (line) => {
-        array.push(line);
-        console.log(line);
-      });
-    console.log(array.length);
-    res.render('zad3.ejs',{logs: array});
+    
+    var array = fs.readFileSync('logs.txt').toString().split("\n");
+    console.log(req.body.ile_logow);
+
+    res.render('zad3.ejs',{logs: array.slice((array.length - req.body.ile_logow -1))});
+  
 });
 app.get('/zad3',function(req,res)
 {
     res.render('zad3.ejs');
-})
+}) 
 
