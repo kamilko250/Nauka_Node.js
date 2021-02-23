@@ -125,12 +125,43 @@ app.post('/zad3',function(req,res)
             ObjectsList.push(Objct);
         }
     });
-    console.table(ObjectsList.slice((ObjectsList.length - req.body.ile_logow - 1)));
-    res.render('zad3.ejs',{logs: ObjectsList.slice((ObjectsList.length - req.body.ile_logow - 1)).reverse()});
+    
+    if(req.body.ile_logow < ObjectsList.length)
+    {
+        res.render('zad3.ejs',{logs: ObjectsList.slice((ObjectsList.length - req.body.ile_logow)).reverse()});
+    }   
+    else
+    { 
+        res.send('Podano więcej logów niż jest w bazie');
+    }     
   
 });
 app.get('/zad3',function(req,res)
 {
-    res.render('zad3.ejs');
+    var array = fs.readFileSync('logs.txt').toString().split("\n");
+    var ObjectsList = [];
+    array.forEach(function(line)
+    {
+        if(line)
+        {
+            var tab = line.split(' ');
+            var Objct = {};
+            Objct['ip'] = (tab[0]);
+            Objct['time'] = (tab[1]);
+            Objct['date'] = (tab[2]);
+            Objct['method'] = (tab[3]);
+            ObjectsList.push(Objct);
+        }
+    });
+    
+    if(20 < ObjectsList.length)
+    {
+        res.render('zad3.ejs',{logs: ObjectsList.slice((ObjectsList.length - 20)).reverse()});
+    }   
+    else
+    { 
+        res.render('zad3.ejs',{logs: ObjectsList.reverse()});
+        res.send('Podano więcej logów niż jest w bazie');
+    } 
 }) 
 
