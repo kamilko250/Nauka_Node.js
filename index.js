@@ -30,8 +30,20 @@ const rl = readline.createInterface({
 
 var middleware = function(req, res, next)
 {
-    fs.appendFile('logs.txt', req.ip + '\n', function(){});
-    //console.log(req.ip);
+    var logStream = fs.createWriteStream('logs.txt', {flags: 'a'});
+    
+    let ts = Date.now();
+    let data_obj = new Date(ts);
+    let hour = data_obj.getHours() - 1;
+    let min = data_obj.getMinutes();
+    let sec = data_obj.getSeconds();
+    let date = data_obj.getDate();
+    let month = data_obj.getMonth() + 1;
+    let year = data_obj.getFullYear();
+    logStream.write(req.ip + " ");
+    logStream.write(hour + ":" + min + ":" + sec + " ");
+    logStream.write(date + "-" + month + "-" + year + " ");
+    logStream.end(req.method + "\n");
     next();
 };
 app.use(middleware);
@@ -98,11 +110,23 @@ app.get("/no_results/wyniki",function(req,res)
 });
 app.post('/zad3',function(req,res)
 {
-    
     var array = fs.readFileSync('logs.txt').toString().split("\n");
-    console.log(req.body.ile_logow);
-
-    res.render('zad3.ejs',{logs: array.slice((array.length - req.body.ile_logow -1))});
+    var ObjectsList = []
+    array.forEach(function(line)
+    {
+        if(line)
+        {
+            var tab = line.split(' ');
+            var Objct = {};
+            Objct['ip'] = (tab[0]);
+            Objct['time'] = (tab[1]);
+            Objct['date'] = (tab[2]);
+            Objct['method'] = (tab[3]);
+            ObjectsList.push(Objct);
+        }
+    });
+    console.table(ObjectsList.slice((ObjectsList.length - req.body.ile_logow - 1)));
+    res.render('zad3.ejs',{logs: ObjectsList.slice((ObjectsList.length - req.body.ile_logow - 1)).reverse()});
   
 });
 app.get('/zad3',function(req,res)
