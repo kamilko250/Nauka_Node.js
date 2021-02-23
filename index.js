@@ -1,5 +1,6 @@
 var path = require('path');
 var fileupload = require("express-fileupload");
+var cookieParser = require('cookie-parser');
 const fs = require('fs');
 const readline = require('readline');
 const https = require('http');
@@ -9,6 +10,7 @@ const url = require('url');
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(fileupload());
+app.use(cookieParser());
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('trust proxy', true);
@@ -54,27 +56,52 @@ app.get('/', function(req, res)
 });
 app.get('/zad1', function(req, res)
 {
-    res.render('zad1.ejs',{number: 0 });
+    if(req.cookies)
+    {
+        res.render('zad1.ejs',{number: 0, min: req.cookies['min'], max: req.cookies['max'] })
+    }
+    else
+    {
+        res.render('zad1.ejs',{number: 0, min: 0, max: 0 });
+    }
 });
 app.get('/zad2', function(req,res)
 {
-    res.render('zad2.ejs');
+    if(req.cookies)
+        res.render('zad2.ejs', {value: req.cookies['value']});
+    else
+    {
+            res.render('zad2.ejs',{value: 1});
+    }    
 });
 app.post('/zad1', function(req, res)
 {
-    min = Number(req.body.number.min);
-    max = Number(req.body.number.max);
-    var randomNumber = (Math.random() * max % (max-min) ) + min;
-    res.render('zad1.ejs',{number: randomNumber });
+    if(req.cookies)
+    {
+        min = Number(req.body.number.min);
+        max = Number(req.body.number.max);
+        res.cookie('min', min);
+        res.cookie('max', max);
+        var randomNumber = (Math.random() * max % (max-min) ) + min;
+        res.render('zad1.ejs',
+        {
+            number: randomNumber,
+            min: min,
+            max: max
+        });
+    }
 });
 
 app.post('/zad2',function(req,res)
 {
     var file;
-     if(!req.files)
+    let value = req.body.ile_liczb;
+    res.cookie('value',value);
+
+    if(!req.files)
     {
         res.send("File was not found");
-         return;
+        return;
     }
     var filePath = path.join(__dirname + "/no_results/wynik.txt");
     file = req.files.textfile;  // here is the field name of the form
@@ -90,10 +117,10 @@ app.post('/zad2',function(req,res)
             return console.log(err + 'blad w write');
         } 
     });
-
-    for(step = 0; step < req.body.ile_liczb; step++)
+    
+    for(step = 0; step < value; step++)
     {
-        let randomNum = (Math.random() * max1 % (max1-min1) ) + min1;
+        let randomNum = (Math.random() * max1 % (max1 - min1) ) + min1;
         fs.appendFile(__dirname + "/no_results/wyniki.txt", randomNum.toString() + '\n', function(err)
         {
             if(err)
@@ -102,7 +129,8 @@ app.post('/zad2',function(req,res)
             } 
         });
     }
-    res.render('zad2.ejs', {link: "/no_results/wyniki"});
+    
+    res.render('zad2.ejs', {link: "/no_results/wyniki", value: value});
 });
 app.get("/no_results/wyniki",function(req,res)
 {
@@ -112,6 +140,8 @@ app.post('/zad3',function(req,res)
 {
     var array = fs.readFileSync('logs.txt').toString().split("\n");
     var ObjectsList = [];
+    let ile_logow = req.body.ile_logow;
+    res.cookie('ile_logow', ile_logow);
     array.forEach(function(line)
     {
         if(line)
@@ -126,13 +156,14 @@ app.post('/zad3',function(req,res)
         }
     });
     
-    if(req.body.ile_logow < ObjectsList.length)
+    if(ile_logow < ObjectsList.length)
     {
         res.render('zad3.ejs',
         {
             logs: ObjectsList.slice(
-                (ObjectsList.length - req.body.ile_logow))
-                .reverse()
+                (ObjectsList.length - ile_logow))
+                .reverse(),
+                ile_logow: ile_logow
         });
     }   
     else
@@ -158,22 +189,31 @@ app.get('/zad3',function(req,res)
             ObjectsList.push(Objct);
         }
     });
-    
+    let ile_logow;
+    if(req.cookies)
+    {
+        ile_logow = req.cookies['ile_logow']
+    }  
+    else
+    {
+        ile_logow = 1
+    } 
+    let list;
     if(20 < ObjectsList.length)
     {
-        res.render('zad3.ejs',
-        {
-            logs: ObjectsList.slice(
-                (ObjectsList.length - 20))
-                .reverse()
-        });
-    }   
+        list = ObjectsList.slice(
+            (ObjectsList.length - 20))
+            .reverse()
+    }
     else
-    { 
+    {
+        list = ObjectsList.reverse()
+    }
+   
         res.render('zad3.ejs',
         {
-            logs: ObjectsList.reverse()
+            logs: list,
+            ile_logow: req.cookies['ile_logow']
         });
-    } 
-}) 
+});
 
