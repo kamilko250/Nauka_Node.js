@@ -34,7 +34,7 @@ var middleware = function(req, res, next)
     
     let ts = Date.now();
     let data_obj = new Date(ts);
-    let hour = data_obj.getHours() - 1;
+    let hour = data_obj.getHours();
     let min = data_obj.getMinutes();
     let sec = data_obj.getSeconds();
     let date = data_obj.getDate();
