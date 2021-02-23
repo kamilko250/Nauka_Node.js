@@ -111,7 +111,7 @@ app.get("/no_results/wyniki",function(req,res)
 app.post('/zad3',function(req,res)
 {
     var array = fs.readFileSync('logs.txt').toString().split("\n");
-    var ObjectsList = []
+    var ObjectsList = [];
     array.forEach(function(line)
     {
         if(line)
@@ -128,7 +128,12 @@ app.post('/zad3',function(req,res)
     
     if(req.body.ile_logow < ObjectsList.length)
     {
-        res.render('zad3.ejs',{logs: ObjectsList.slice((ObjectsList.length - req.body.ile_logow)).reverse()});
+        res.render('zad3.ejs',
+        {
+            logs: ObjectsList.slice(
+                (ObjectsList.length - req.body.ile_logow))
+                .reverse()
+        });
     }   
     else
     { 
@@ -156,12 +161,19 @@ app.get('/zad3',function(req,res)
     
     if(20 < ObjectsList.length)
     {
-        res.render('zad3.ejs',{logs: ObjectsList.slice((ObjectsList.length - 20)).reverse()});
+        res.render('zad3.ejs',
+        {
+            logs: ObjectsList.slice(
+                (ObjectsList.length - 20))
+                .reverse()
+        });
     }   
     else
     { 
-        res.render('zad3.ejs',{logs: ObjectsList.reverse()});
-        res.send('Podano więcej logów niż jest w bazie');
+        res.render('zad3.ejs',
+        {
+            logs: ObjectsList.reverse()
+        });
     } 
 }) 
 
