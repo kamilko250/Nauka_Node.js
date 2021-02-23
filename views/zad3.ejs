@@ -47,6 +47,12 @@
         <form action="/zad3" method="post" enctype="multipart/form-data">
             <label for="lname">Ile logów wygenerować</label><br>
             <input type="number" name="ile_logow" value="<%- ile_logow %>"><br><br>
+            <label>Wyświetlić czas?</label>
+            <input type="checkbox" name="time"><br>
+            <label>Wyświetlić datę?</label>
+            <input type="checkbox" name="date"><br>
+            <label>Wyświetlić typ?</label>
+            <input type="checkbox" name="method"><br>
             <input type="submit" value="Wyślij"><br>
         </form> 
         
@@ -54,16 +60,30 @@
           <% if(typeof(logs) !== 'undefined'){ %>
             <tr>
               <th>IP</th>
+              <% if(typeof(opt) !== 'undefined') { %>
+                <% if(opt.time) { %>
               <th>Czas UTC</th>
+              <% } %>
+              <% if(opt.date) {%>
               <th>Data</th>
+              <% } %>
+              <% if(opt.method) {%>
               <th>Typ żądania</th>
+              <% }} %>
             </tr>
             <% for(var i = 0; i < logs.length; i++){ %>
               <tr>
                 <td><%= logs[i].ip %></td>
-                <td><%= logs[i].time %></td>
-                <td><%= logs[i].date %></td>
-                <td><%= logs[i].method %></td>
+                <% if(typeof(opt) !== 'undefined') { %>
+                <% if(opt.time) { %>
+                  <td><%= logs[i].time %></td>
+                  <% } %>
+                <% if(opt.date) {%>
+                  <td><%= logs[i].date %></td>
+                  <% } %>
+                <% if(opt.method) {%>
+                  <td><%= logs[i].method %></td>
+                  <% }} %>
               </tr>
           <% }} %> 
         

@@ -78,8 +78,8 @@ app.post('/zad1', function(req, res)
 {
     if(req.cookies)
     {
-        min = Number(req.body.number.min);
-        max = Number(req.body.number.max);
+        min = req.body.number.min;
+        max = req.body.number.max;
         res.cookie('min', min);
         res.cookie('max', max);
         var randomNumber = (Math.random() * max % (max-min) ) + min;
@@ -96,7 +96,7 @@ app.post('/zad2',function(req,res)
 {
     var file;
     let value = req.body.ile_liczb;
-    res.cookie('value',value);
+    res.cookie('value', value);
 
     if(!req.files)
     {
@@ -110,7 +110,7 @@ app.post('/zad2',function(req,res)
     var min1 = Number(tab[0]);
     var max1 = Number(tab[1]);
 
-    fs.writeFile(__dirname + "/no_results/wyniki.txt", "", function(err)
+    fs.writeFile(filePath, "", function(err)
     {
         if(err)
         {
@@ -121,7 +121,7 @@ app.post('/zad2',function(req,res)
     for(step = 0; step < value; step++)
     {
         let randomNum = (Math.random() * max1 % (max1 - min1) ) + min1;
-        fs.appendFile(__dirname + "/no_results/wyniki.txt", randomNum.toString() + '\n', function(err)
+        fs.appendFile(filePath, randomNum.toString() + '\n', function(err)
         {
             if(err)
             {
@@ -141,6 +141,12 @@ app.post('/zad3',function(req,res)
     var array = fs.readFileSync('logs.txt').toString().split("\n");
     var ObjectsList = [];
     let ile_logow = req.body.ile_logow;
+    var options  = {
+        'time': req.body.time, 
+        'date': req.body.date,
+        'method': req.body.method
+    }
+    //console.log(typeof(req.body.option));
     if(req.body.ile_logow == "")
     {
            ile_logow = 20;
@@ -170,7 +176,8 @@ app.post('/zad3',function(req,res)
             logs: ObjectsList.slice(
                 (ObjectsList.length - ile_logow))
                 .reverse(),
-                ile_logow: ile_logow
+                ile_logow: ile_logow,
+                opt: options
         });
     }   
     else
@@ -183,6 +190,7 @@ app.get('/zad3',function(req,res)
 {
     var array = fs.readFileSync('logs.txt').toString().split("\n");
     var ObjectsList = [];
+    
     array.forEach(function(line)
     {
         if(line)
@@ -209,7 +217,8 @@ app.get('/zad3',function(req,res)
     res.render('zad3.ejs',
     {
         logs: undefined,
-        ile_logow: ile_logow
+        ile_logow: ile_logow,
+        opt: {date: true, method:true,time: true} 
     });
 });
 
