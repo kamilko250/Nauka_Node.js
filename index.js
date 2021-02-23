@@ -141,6 +141,10 @@ app.post('/zad3',function(req,res)
     var array = fs.readFileSync('logs.txt').toString().split("\n");
     var ObjectsList = [];
     let ile_logow = req.body.ile_logow;
+    if(req.body.ile_logow == "")
+    {
+           ile_logow = 20;
+    }
     res.cookie('ile_logow', ile_logow);
     array.forEach(function(line)
     {
@@ -199,21 +203,10 @@ app.get('/zad3',function(req,res)
         ile_logow = 1
     } 
     let list;
-    if(20 < ObjectsList.length)
+    res.render('zad3.ejs',
     {
-        list = ObjectsList.slice(
-            (ObjectsList.length - 20))
-            .reverse()
-    }
-    else
-    {
-        list = ObjectsList.reverse()
-    }
-   
-        res.render('zad3.ejs',
-        {
-            logs: list,
-            ile_logow: req.cookies['ile_logow']
-        });
+        logs: undefined,
+        ile_logow: ile_logow
+    });
 });
 
