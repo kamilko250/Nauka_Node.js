@@ -145,7 +145,10 @@ app.post('/zad3',function(req,res)
     {
            ile_logow = 20;
     }
-    res.cookie('ile_logow', ile_logow);
+    else
+    {
+        res.cookie('ile_logow', ile_logow);
+    }
     array.forEach(function(line)
     {
         if(line)
