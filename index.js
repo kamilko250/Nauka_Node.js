@@ -141,12 +141,15 @@ app.post('/zad3',function(req,res)
     var array = fs.readFileSync('logs.txt').toString().split("\n");
     var ObjectsList = [];
     let ile_logow = req.body.ile_logow;
+    
     var options  = {
-        'time': req.body.time, 
-        'date': req.body.date,
-        'method': req.body.method
+        'time': req.body.time ? true : false, 
+        'date': req.body.date ? true : false,
+        'method': req.body.method ? true : false,
     }
-    //console.log(typeof(req.body.option));
+    console.log(req.cookies['options']);
+    res.cookie('options', options);
+
     if(req.body.ile_logow == "")
     {
            ile_logow = 20;
@@ -190,7 +193,26 @@ app.get('/zad3',function(req,res)
 {
     var array = fs.readFileSync('logs.txt').toString().split("\n");
     var ObjectsList = [];
-    
+    var options;
+    if(req.cookies)
+    {
+        options = {
+            'time': req.cookies['options']['time'] ? true : false, 
+            'date': req.cookies['options']['date'] ? true : false,
+            'method': req.cookies['options']['method'] ? true : false,
+        }
+    }
+    else
+    {
+        options = {
+            'time': false, 
+            'date': false,
+            'method': false,
+        }
+    }
+
+    //res.cookie('options', options);
+
     array.forEach(function(line)
     {
         if(line)
@@ -218,7 +240,7 @@ app.get('/zad3',function(req,res)
     {
         logs: undefined,
         ile_logow: ile_logow,
-        opt: {date: true, method:true,time: true} 
+        opt: options
     });
 });
 
