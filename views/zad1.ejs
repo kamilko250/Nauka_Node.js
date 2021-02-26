@@ -1,16 +1,17 @@
-<head>
+<body>
+  <head>
     <title>FreshDev</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
-<body>
-    <div style="margin-bottom:0" style="max-height: 50" >
+
+    <div style="margin-bottom:0; max-height: 50" >
         <h1 style="text-align: center" >FreshDev</h1> 
-      </div>
+    </div>
       
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -33,15 +34,15 @@
           </ul>
         </div>  
       </nav>
-    <div style="text-align: center;" style="margin:5;">
+    <div style="text-align: center; margin:5;">
         <p>Losowa liczba między min a max</p>
         <form action="/zad1" method="post">
-          <label for="fname">Min</label><br>
-          <input type="number" name="number[min]" value="<%- min %>"><br>
-          <label for="lname">Max</label><br>
-          <input type="number" name="number[max]" value="<%- max %>"><br><br>
-          <input type="submit" value="Wyślij">
+          <label for="fname"> Min </label><br/>
+          <input type="number" name="number[min]" value="<%- min %>"><br/>
+          <label for="lname">Max</label><br/>
+          <input type="number" name="number[max]" value="<%- max %>"><br/><br/>
+          <input type="submit" value="Wyślij"/>
         </form> 
-        <p style="margin: 10;">Wynik: <%- number %></p>
+        <p style="margin: 10;"> Wynik: <%- number %> </p>
     </div>
 </body>

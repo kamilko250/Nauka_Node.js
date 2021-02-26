@@ -117,3 +117,10 @@ dist
 .vscode-test
 
 # End of https://www.toptal.com/developers/gitignore/api/node
+*.sln
+Fresh-TechDev.njsproj
+bin/Microsoft.NodejsTools.WebRole.dll
+.vs/Fresh-TechDev/v16/.suo
+Fresh-TechDev.njsproj.user
+*.cache
+obj/Debug/Fresh-TechDev.njsproj.FileListAbsolute.txt
