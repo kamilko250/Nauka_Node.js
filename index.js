@@ -301,7 +301,7 @@ app.post('/zad4final', function (req, res) {
     {
         var min = req.session.range['min']
         var max = req.session.range['max']
-        var value = Math.random() * (max - min) + min 
+        var value = (Math.random() * (max - min)) + min 
         results.push(value)
     }
     var link
