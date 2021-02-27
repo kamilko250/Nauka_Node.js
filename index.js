@@ -263,11 +263,11 @@ app.post('/zad4a', function (req, res)
     var max = req.body.max
     if(min < 0  || max < 0)
     {
-        res.send('min or max < 20')
+        res.send({erorr: 'min or max < 20'})
     }
     if(min >= max)
     {
-        res.send('max must be grater than min')
+        res.send({error: 'max must be grater than min'})
     }
     req.session.range = 
     {
