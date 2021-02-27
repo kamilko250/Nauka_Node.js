@@ -28,7 +28,7 @@ const options = {
 
 var server = https.createServer(options, app);
 
-app.listen(443);
+//app.listen(443);
 app.listen(process.env.PORT);
 
 const rl = readline.createInterface({
@@ -84,8 +84,8 @@ app.post('/zad1', function(req, res)
 {
     if(req.cookies)
     {
-        min = req.body.number.min;
-        max = req.body.number.max;
+        min = Number(req.body.number.min);
+        max = Number(req.body.number.max);
         res.cookie('min', min);
         res.cookie('max', max);
         var randomNumber = (Math.random() * max % (max-min) ) + min;
