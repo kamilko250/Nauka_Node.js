@@ -8,7 +8,6 @@ const https = require('http');
 const express = require('express');
 const app = express();
 const url = require('url');
-const { randomInt } = require('crypto');
 app.use(session({
     secret: 'keyboard cat',
     resave: 'false',
@@ -309,4 +308,8 @@ app.post('/zad4final', function (req, res) {
         site: req.body.site ? true : false,
         results: req.body.site ? results : new Array()
     })
+})
+app.get('/downloadz4', function(req,res)
+{
+    res.download('no_results/resultz4.txt')
 })
