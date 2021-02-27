@@ -303,6 +303,7 @@ app.post('/zad4final', function (req, res) {
         var max = req.session.range['max']
         var value = (Math.random() * (max - min)) + min 
         results.push(value)
+        console.log(value)
     }
     var link
     if(req.body.file)
