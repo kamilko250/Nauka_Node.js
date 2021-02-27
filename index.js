@@ -259,11 +259,22 @@ app.get('/zad4', function (req, res)
 })
 app.post('/zad4a', function (req, res)
 {
+    var min = req.body.min
+    var max = req.body.max
+    if(min < 0  || max < 0)
+    {
+        res.send('min or max < 20')
+    }
+    if(min >= max)
+    {
+        res.send('max must be grater than min')
+    }
     req.session.range = 
     {
-        'min': req.body.min,
-        'max': req.body.max
+        'min': min,
+        'max': max
     }
+
     //console.log(req.session)
     res.render('zad4a.ejs', {quantity: req.session.quantity || 0})
 })
@@ -286,9 +297,10 @@ app.post('/zad4final', function (req, res) {
     var results = new Array()
     for(i = 0; i < req.session.quantity; i++)
     {
-        results.push(
-            Math.random() * (req.session.range['max'] - req.session.range['min']) + req.session.range['min']
-        )
+        var min = req.session.range['min']
+        var max = req.session.range['max']
+        var value = Math.random() * (max - min) + min 
+        results.push(value)
     }
     var link
     if(req.body.file)
