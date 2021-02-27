@@ -1,12 +1,19 @@
 var path = require('path');
 var fileupload = require("express-fileupload");
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 const fs = require('fs');
 const readline = require('readline');
 const https = require('http');
 const express = require('express');
 const app = express();
 const url = require('url');
+const { randomInt } = require('crypto');
+app.use(session({
+    secret: 'keyboard cat',
+    resave: 'false',
+    saveUninitialized: true
+}))
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(fileupload());
@@ -194,7 +201,7 @@ app.get('/zad3',function(req,res)
     var array = fs.readFileSync('logs.txt').toString().split("\n");
     var ObjectsList = [];
     var options;
-    if(req.cookies)
+    if(req.cookies['options'])
     {
         options = {
             'time': req.cookies['options']['time'] ? true : false, 
@@ -243,4 +250,63 @@ app.get('/zad3',function(req,res)
         opt: options
     });
 });
+app.get('/zad4', function (req, res)
+{
+    res.render('zad4.ejs', 
+    {
+        min: req.session.range ? req.session.range['min'] : 0,
+        max: req.session.range ? req.session.range['max'] : 0
+    })
+})
+app.post('/zad4a', function (req, res)
+{
+    req.session.range = 
+    {
+        'min': req.body.min,
+        'max': req.body.max
+    }
+    //console.log(req.session)
+    res.render('zad4a.ejs', {quantity: req.session.quantity || 0})
+})
+app.post('/zad4b', function (req, res) {
+    req.session.quantity = req.body.quantity
+    //console.log(req.session)
+    res.render('zad4b.ejs', 
+    {
+        site: req.session.place ? req.session.place['site'] : false,
+        file: req.session.place ? req.session.place['file'] : false
+    })
 
+})
+app.post('/zad4final', function (req, res) {
+    req.session.place =
+    {
+        'site': req.body.site ? true : false,
+        'file': req.body.file ? true : false
+    }
+    var results = new Array()
+    for(i = 0; i < req.session.quantity; i++)
+    {
+        results.push(
+            Math.random() * (req.session.range['max'] - req.session.range['min']) + req.session.range['min']
+        )
+    }
+    var link
+    if(req.body.file)
+    {
+        link = 'no_results/resultz4.txt'
+        var logStream = fs.createWriteStream(link, {flags: 'w'});
+        results.forEach(element => {
+            logStream.write(element + '\n')
+        })
+        logStream.end()
+    }
+
+    res.render('zad4final.ejs', 
+    {
+        file: req.body.file ? true : false,
+        link: req.body.file ? link : "",
+        site: req.body.site ? true : false,
+        results: req.body.site ? results : new Array()
+    })
+})

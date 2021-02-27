@@ -1,5 +1,4 @@
-﻿
-  <head>
+<head>
     <title>FreshDev</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -30,19 +29,18 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/zad3">Zadanie 3</a>
-            </li>    
+            </li>   
+            <li class="nav-item">
+                <a class="nav-link" href="/zad4">Zadanie 4</a>
+            </li>  
           </ul>
         </div>  
-      </nav>
-    <div style="text-align: center; margin: 5;">
-        <p>Losowa liczba między min a max</p>
-        <form action="/zad1" method="post">
-          <label for="fname"> Min </label><br/>
-          <input type="number" name="number[min]" value="<%- min %>"><br/>
-          <label for="lname">Max</label><br/>
-          <input type="number" name="number[max]" value="<%- max %>"><br/><br/>
-          <input type="submit" value="Wyślij"/>
+    </nav>
+    <div style="text-align: center;">
+        <form action="/zad4b" method="post" enctype="multipart/form-data">
+            <label for="lname">Ile liczb wygenerować</label><br>
+            <input type="number" name="quantity" value="<%- quantity %>"><br><br>
+            <input type="submit" value="Dalej"><br>
         </form> 
-        <p style="margin: 10;"> Wynik: <%- number %> </p>
     </div>
 </body>
