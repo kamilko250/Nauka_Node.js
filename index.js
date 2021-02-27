@@ -28,7 +28,7 @@ const options = {
 
 var server = https.createServer(options, app);
 
-//app.listen(443);
+app.listen(443);
 app.listen(process.env.PORT);
 
 const rl = readline.createInterface({
@@ -259,8 +259,8 @@ app.get('/zad4', function (req, res)
 })
 app.post('/zad4a', function (req, res)
 {
-    var min = req.body.min
-    var max = req.body.max
+    let min = req.body.min
+    let max = req.body.max
     if(min < 0  || max < 0)
     {
         res.send({erorr: 'min or max < 20'})
@@ -299,11 +299,9 @@ app.post('/zad4final', function (req, res) {
     var results = new Array()
     for(i = 0; i < req.session.quantity; i++)
     {
-        var min = req.session.range['min']
-        var max = req.session.range['max']
-        var value = (Math.random() * (max - min)) + min 
-        results.push(value)
-        console.log(value)
+        let min = Number(req.session.range['min']);
+        let max = Number(req.session.range['max']);
+        results.push(Math.random() * (max - min) + min);
     }
     var link
     if(req.body.file)
