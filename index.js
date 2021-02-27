@@ -304,7 +304,6 @@ app.post('/zad4final', function (req, res) {
     res.render('zad4final.ejs', 
     {
         file: req.body.file ? true : false,
-        link: req.body.file ? link : "",
         site: req.body.site ? true : false,
         results: req.body.site ? results : new Array()
     })
