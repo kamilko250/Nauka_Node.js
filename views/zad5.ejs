@@ -6,10 +6,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </head>
-  <body>
+</head>
+<body>
   
-  <div style="margin-bottom:0" style="max-height: 50" >
+  <div style="margin-bottom:0" style="max-height: 50" style="background-color: gray;">
     <h1 style="text-align: center" >FreshDev</h1> 
   </div>
   
@@ -35,14 +35,37 @@
           <a class="nav-link" href="/zad4">Zadanie 4</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/zad5">Zadanie 4</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/zad5">Zadanie 5</a>
-        </li>   
+        </li>      
       </ul>
     </div>  
   </nav>
-  <div style="text-align: center;">
-    <h5>W menu dostępne są zadania które zrobiłem/robię.</h5>
-    <a href="https://github.com/kamilko250/Nauka_Node.js" target="_blank">Link do Github<a><br>
-    <a href="https://stackoverflow.com/users/12071283/fresh2054" target="_blank">Link do StackOverflow</a>
-  </div>
-  </body>
+
+  <div style="width: auto; height: auto; text-align: center;" >
+    <div style="display: inline-block; background-color: grey; padding: 10px;">
+      <form>
+        <label>Losowa liczba między min a max</label>
+        <label for="fname"> Min </label><br/>
+        <input type="number" name="leftmin" value="<%- leftmin %>"><br/>
+        <label for="lname">Max</label><br/>
+        <input type="number" name="leftmax" value="<%- leftmax %>"><br/><br/>
+        <input type="submit" id="GetRandomLeft" value="Wyślij"/>
+      </form>   
+      <label> Wynik: <%- leftnumber %> </label>
+    </div>
+    <div style="display: inline-block; background-color: lightslategrey; padding: 10px;">
+      <form>
+        <label>Losowa liczba między min a max</label>
+        <label for="fname"> Min </label><br/>
+        <input type="number" name="rightmin" value="<%- rightmin %>"><br/>
+        <label for="lname">Max</label><br/>
+        <input type="number" name="rightmax" value="<%- rightmax %>"><br/><br/>
+        <input type="submit" id="GetRanodmRight" value="Wyślij"/> 
+      </form> 
+      <label> Wynik: <%- rightnumber %> </label> 
+    </div>
+  </div>  
+</body>

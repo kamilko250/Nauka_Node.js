@@ -28,7 +28,7 @@ const options = {
 
 var server = https.createServer(options, app);
 
-//app.listen(443);
+app.listen(443);
 app.listen(process.env.PORT);
 
 const rl = readline.createInterface({
@@ -316,7 +316,7 @@ app.post('/zad4final', function (req, res) {
 
     res.render('zad4final.ejs', 
     {
-        file: req.body.file ? true : false,
+        file: req.body.file ? true : false, 
         site: req.body.site ? true : false,
         results: req.body.site ? results : new Array()
     })
@@ -324,4 +324,16 @@ app.post('/zad4final', function (req, res) {
 app.get('/downloadz4', function(req,res)
 {
     res.download('no_results/resultz4.txt')
+})
+app.get('/zad5',function(req,res)
+{
+    res.render('zad5.ejs',
+    {
+        leftmin: 1,
+        leftmax: 1,
+        rightmin: 1,
+        rightmax: 1,
+        leftnumber: 1,
+        rightnumber: 1  
+    })
 })
