@@ -43,29 +43,23 @@
       </ul>
     </div>  
   </nav>
-
+  
   <div style="width: auto; height: auto; text-align: center;" >
     <div style="display: inline-block; background-color: grey; padding: 10px;">
-      <form>
+      <form id="form">
         <label>Losowa liczba między min a max</label>
-        <label for="fname"> Min </label><br/>
-        <input type="number" name="leftmin" value="<%- leftmin %>"><br/>
-        <label for="lname">Max</label><br/>
-        <input type="number" name="leftmax" value="<%- leftmax %>"><br/><br/>
-        <input type="submit" id="GetRandomLeft" value="Wyślij"/>
-      </form>   
-      <label> Wynik: <%- leftnumber %> </label>
+        <div>
+          <label > Min </label><br/>
+          <input type="number" name="leftmin" id="leftmin" placeholder="0"><br/>
+        </div>
+        <div>
+          <label >Max</label><br/>
+          <input type="number" name="leftmax" id="leftmax" placeholder="0"><br/><br/>
+        </div>
+        <input type="submit" id="button" value="Wyślij"/>
+      </form>
+      <div id="postResultDiv">Empty Space</div>   
     </div>
-    <div style="display: inline-block; background-color: lightslategrey; padding: 10px;">
-      <form>
-        <label>Losowa liczba między min a max</label>
-        <label for="fname"> Min </label><br/>
-        <input type="number" name="rightmin" value="<%- rightmin %>"><br/>
-        <label for="lname">Max</label><br/>
-        <input type="number" name="rightmax" value="<%- rightmax %>"><br/><br/>
-        <input type="submit" id="GetRanodmRight" value="Wyślij"/> 
-      </form> 
-      <label> Wynik: <%- rightnumber %> </label> 
-    </div>
-  </div>  
+    
+    <div style="display: inline-block; background-color: lightslategrey; padding: 10px;"></div>
 </body>
