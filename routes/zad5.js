@@ -1,5 +1,12 @@
 const express = require('express')
 const router = express.Router()
+var jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = (new JSDOM('')).window;
+global.document = document;
+
+var $ = jQuery = require('jquery')(window);
 
 router.get('/zad5', function(req, res)
 {
@@ -22,4 +29,8 @@ router.post('/zad5', function(req, res)
         rightnumber: 1  
     })
 })
+
+
+
+
 module.exports = router
