@@ -3,7 +3,7 @@ const router = express.Router()
 router.use(express.urlencoded({extended: true}))
 router.use(express.json())
 
-app.get('/', function(req, res) 
+router.get('/', function(req, res) 
 {
     res.render('basicView.ejs');
 });

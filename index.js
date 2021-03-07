@@ -8,13 +8,15 @@ const app = express()
 const server = http.createServer(app)
 const render  = require('ejs')
 const cookieParser = require('cookie-parser')
+server.listen(443 ?? process.env.PORT)
+const io = require('socket.io')(server)
 
-server.listen(443 || process.env.PORT)
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/scripts', express.static(path.join(__dirname, 'scripts')))
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
+
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.set('trust proxy', true)
@@ -44,7 +46,7 @@ app.use(zad5)
 const zad6 = require('./routes/zad6.js')
 app.use(zad6)
 
-const io = require('socket.io')(server)
+
 
 io.on('connection', socket => { 
     console.log("connected")
