@@ -44,8 +44,8 @@
   </nav>
   
   <div style="width: auto; height: auto; text-align: center;" >
+    
     <div style="display: inline-block; background-color: grey; padding: 10px;">
-      
       <form id="leftform">
         <label>Losowa liczba między min a max</label>
         <div>
@@ -58,9 +58,24 @@
         </div>
         <input type="submit" id="button" value="Wyślij"/>
       </form>
-      <div id="postResultDiv">Empty Space</div>   
+      <div id="leftpostResultDiv">Empty Space</div>   
     </div>
     
-    <div style="display: inline-block; background-color: lightslategrey; padding: 10px;"></div>
+    <div style="display: inline-block; background-color: lightslategrey; padding: 10px;">
+      <form id="rightform">
+        <label>Losowa liczba między min a max</label>
+        <div>
+          <label > Min </label><br/>
+          <input type="number" name="rightmin" id="rightmin" placeholder="0"><br/>
+        </div>
+        <div>
+          <label >Max</label><br/>
+          <input type="number" name="rightmax" id="rightmax" placeholder="0"><br/><br/>
+        </div>
+        <input type="submit" id="button" value="Wyślij"/>
+      </form>
+      <div id="rightpostResultDiv">Empty Space</div>
+    </div>
     <script type="text/javascript" src="scripts/script_zad5.js"></script>
+  </div>
 </body>
