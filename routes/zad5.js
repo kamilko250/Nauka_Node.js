@@ -12,7 +12,7 @@ router.post('/zad5', function(req, res)
     console.log(req.body)
     min = Number(req.body['leftmin'])
     max = Number(req.body['leftmax'])
-    res.send((Math.random() * (max-min)) + min )
+    res.send({ result : (Math.random() * (max-min)) + min })
 })
 
 module.exports = router
