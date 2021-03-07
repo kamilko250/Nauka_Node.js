@@ -3,6 +3,11 @@ const router = express.Router()
 router.use(express.urlencoded({extended: true}))
 router.use(express.json())
 
+app.get('/', function(req, res) 
+{
+    res.render('basicView.ejs');
+});
+
 router.get('/zad1', function(req, res)
 {
     if(req.cookies)
