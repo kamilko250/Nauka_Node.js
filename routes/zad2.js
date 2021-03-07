@@ -29,7 +29,7 @@ router.post('/zad2',function(req,res)
         res.send("File was not found")
         return;
     }
-    var filePath = path.join(__dirname + "/no_results/wynik.txt")
+    var filePath = path.join("./no_results/wynik.txt")
     file = req.files.textfile
     str = file.data.toString('utf-8')
     var tab = str.split(',')
@@ -57,7 +57,7 @@ router.post('/zad2',function(req,res)
     }
     
     res.render('zad2.ejs', {
-        link: "/no_results/wyniki",
+        link: "./no_results/wyniki",
          value: value
         })
 })

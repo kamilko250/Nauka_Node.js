@@ -1,15 +1,12 @@
 var path = require('path')
 var cookieParser = require('cookie-parser')
-var fileupload = require("express-fileupload")
 var session = require('express-session')
 const fs = require('fs')
 const readline = require('readline')
 const https = require('http')
 const express = require('express')
 const app = express()
-const url = require('url')
 const render  = require('ejs')
-
 
 //app.listen(443)
 app.listen(process.env.PORT)
@@ -34,6 +31,7 @@ const options = {
    key: fs.readFileSync(__dirname + '/private.key', 'utf8'),
   cert: fs.readFileSync(__dirname + '/public.crt', 'utf8')
 };
+
 var server = https.createServer(options, app);
 
 var zad1 = require('./routes/zad1.js')
@@ -45,8 +43,9 @@ app.use(zad3)
 var zad4 = require('./routes/zad4.js')
 app.use(zad4)
 var zad5 = require('./routes/zad5.js')
-const { allowedNodeEnvironmentFlags } = require('process')
 app.use(zad5)
+var zad6 = require('./routes/zad6.js')
+app.use(zad6)
 
 const rl = readline.createInterface({
     input: fs.createReadStream('logs.txt'),
