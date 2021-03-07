@@ -10,8 +10,6 @@ const render  = require('ejs')
 const cookieParser = require('cookie-parser')
 
 server.listen(443 || process.env.PORT)
-//app.listen(process.env.PORT)
-
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
@@ -82,7 +80,3 @@ var middleware = function(req, res, next)
 };
 app.use(middleware);
 
-app.get('/', function(req, res) 
-{
-    res.render('basicView.ejs');
-});
