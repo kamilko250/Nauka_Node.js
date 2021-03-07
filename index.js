@@ -9,8 +9,8 @@ const server = http.Server(app)
 const render  = require('ejs')
 const cookieParser = require('cookie-parser')
 
-app.listen(443)
-//app.listen(process.env.PORT)
+//app.listen(443)
+app.listen(process.env.PORT)
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
