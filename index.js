@@ -10,14 +10,17 @@ const app = express()
 const url = require('url')
 const render  = require('ejs')
 
+
 //app.listen(443)
 app.listen(process.env.PORT)
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
-app.use("/scripts", express.static("./scritps/"))
+app.use('/scripts', express.static(path.join(__dirname, 'scripts')))
+
 app.set('view engine', 'ejs')
+
 app.set('views', path.join(__dirname, 'views'))
 app.set('trust proxy', true)
 

@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 router.use(express.urlencoded({extended: true}))
 router.use(express.json())
-router.use("/scripts", express.static("./scritps/"))
 
 router.get('/zad5', function(req, res)
 {
