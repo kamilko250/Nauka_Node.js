@@ -10,16 +10,16 @@ const app = express()
 const url = require('url')
 const render  = require('ejs')
 
-//app.listen(443);
-app.listen(process.env.PORT);
+app.listen(443)
+app.listen(process.env.PORT)
 
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "scripts")));
-app.set('view engine','ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.set('trust proxy', true);
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+app.use(cookieParser())
+app.use("/scripts", express.static("./scritps/"))
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
+app.set('trust proxy', true)
 
 app.use(session({
     secret: 'keyboard cat',
@@ -42,6 +42,7 @@ app.use(zad3)
 var zad4 = require('./routes/zad4.js')
 app.use(zad4)
 var zad5 = require('./routes/zad5.js')
+const { allowedNodeEnvironmentFlags } = require('process')
 app.use(zad5)
 
 const rl = readline.createInterface({

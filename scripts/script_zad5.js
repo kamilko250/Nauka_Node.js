@@ -1,7 +1,5 @@
-$( document ).ready(function()
-{
-  $("#leftform").submit(function(event)
-  {
+$( document ).ready(function(){
+  $("leftform").submit(function(event){
     event.preventDefault();
     $.ajax({
       type: "POST",
@@ -9,14 +7,12 @@ $( document ).ready(function()
       url: "/zad5",
       data: $("#leftform").serialize(),
       dataType: "json",
-      success: function(range)
-      {
+      success: function(data,status,xhr){
         alert("something")
-        $("#postResultDiv").html("<p>" + JSON.stringify(range) + "</p>")
+        //$("#postResultDiv").html("<p>" + data + "</p>")
       },
-      error: function(err)
-      {
-        alert("ERROR")  
+      error: function(xhr, status, error){
+        alert("") 
       }
     })
   })

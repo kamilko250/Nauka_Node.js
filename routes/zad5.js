@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+router.use(express.urlencoded({extended: true}))
+router.use(express.json())
+router.use("/scripts", express.static("./scritps/"))
 
 router.get('/zad5', function(req, res)
 {
@@ -7,8 +10,10 @@ router.get('/zad5', function(req, res)
 })
 router.post('/zad5', function(req, res)
 {
-    //console.log(JSON.stringify(req.body))
-    res.render('zad5.ejs')
+    console.log(req.body)
+    min = Number(req.body['leftmin'])
+    max = Number(req.body['leftmax'])
+    res.send((Math.random() * (max-min)) + min )
 })
 
 module.exports = router
