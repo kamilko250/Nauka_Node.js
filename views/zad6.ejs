@@ -4,10 +4,20 @@
 <body>
     <header>
     <%- include("navigation.ejs") %>
-    </header>
-
-
-
-    <script src="/socket.io/socket.io.js"></script>
+    </header> 
+    <div style="text-align: center;">
+        <input type="button"  id="button_on" value="Zarejestruj"></input>
+        <input type="button"  id="button_off" value="Wyrejestruj"></input>
+    </div>
+    <div id="display">
+    
+    </div>
+    
+    <script src="scripts/script_zad6.js"></script>
+    <script src="https://cdn.socket.io/3.1.1/socket.io.min.js" integrity="sha384-gDaozqUvc4HTgo8iZjwth73C6dDDeOJsAgpxBcMpZYztUfjHXpzrpdrHRdVp8ySO" crossorigin="anonymous"></script>
+    <script src="node_modules/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+    </script>
 </body>
     

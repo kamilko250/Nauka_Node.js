@@ -1,24 +1,23 @@
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var session = require('express-session')
-const fs = require('fs')
-const readline = require('readline')
-const https = require('http')
+const path = require('path')
+const http = require('http')
 const express = require('express')
+const fs = require('fs')
+const session = require('express-session')
+const readline = require('readline')
 const app = express()
+const server = http.Server(app)
 const render  = require('ejs')
+const cookieParser = require('cookie-parser')
 
-//app.listen(443)
-app.listen(process.env.PORT)
+app.listen(443)
+//app.listen(process.env.PORT)
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/scripts', express.static(path.join(__dirname, 'scripts')))
-//app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
-
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
 app.set('view engine', 'ejs')
-
 app.set('views', path.join(__dirname, 'views'))
 app.set('trust proxy', true)
 
@@ -33,20 +32,30 @@ const options = {
   cert: fs.readFileSync(__dirname + '/public.crt', 'utf8')
 };
 
-var server = https.createServer(options, app);
 
-var zad1 = require('./routes/zad1.js')
+const zad1 = require('./routes/zad1.js')
 app.use(zad1)
-var zad2 = require('./routes/zad2.js')
+const zad2 = require('./routes/zad2.js')
 app.use(zad2)
-var zad3 = require('./routes/zad3.js')
+const zad3 = require('./routes/zad3.js')
 app.use(zad3)
-var zad4 = require('./routes/zad4.js')
+const zad4 = require('./routes/zad4.js')
 app.use(zad4)
-var zad5 = require('./routes/zad5.js')
+const zad5 = require('./routes/zad5.js')
 app.use(zad5)
-var zad6 = require('./routes/zad6.js')
+const zad6 = require('./routes/zad6.js')
 app.use(zad6)
+
+const io = require('socket.io')(server)
+
+io.on('connection', (socket) => { 
+    console.log("connected")
+    socket.on('disconnect',()=>{
+        console.log('disconnected')
+    })
+})
+
+
 
 const rl = readline.createInterface({
     input: fs.createReadStream('logs.txt'),
