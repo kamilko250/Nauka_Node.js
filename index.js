@@ -15,6 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/scripts', express.static(path.join(__dirname, 'scripts')))
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
 
 app.set('view engine', 'ejs')
 
