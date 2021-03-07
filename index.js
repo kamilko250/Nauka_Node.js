@@ -5,12 +5,12 @@ const fs = require('fs')
 const session = require('express-session')
 const readline = require('readline')
 const app = express()
-const server = http.Server(app)
+const server = http.createServer(app)
 const render  = require('ejs')
 const cookieParser = require('cookie-parser')
 
-//app.listen(443)
-app.listen(process.env.PORT)
+server.listen(443 || process.env.PORT)
+//app.listen(process.env.PORT)
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
@@ -48,7 +48,7 @@ app.use(zad6)
 
 const io = require('socket.io')(server)
 
-io.on('connection', (socket) => { 
+io.on('connection', socket => { 
     console.log("connected")
     socket.on('disconnect',()=>{
         console.log('disconnected')
