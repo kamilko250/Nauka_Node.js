@@ -1,22 +1,13 @@
 $( document ).ready(function()
 {
-  console.log("ready")
-
-  $("form").submit(function(event)
+  $("#leftform").submit(function(event)
   {
-    alert("wea re");
     event.preventDefault();
-  })
-  var formData =
-  {
-    min: $("#leftmin").val(),
-    max: $("#leftmax").val()
-    }
     $.ajax({
       type: "POST",
       contentType: "application/json",
       url: "/zad5",
-      data: JSON.stringify(formData),
+      data: $("#leftform").serialize(),
       dataType: "json",
       success: function(range)
       {
@@ -26,12 +17,9 @@ $( document ).ready(function()
       error: function(err)
       {
         alert("ERROR")  
-        console.log("ERROR:", err)
       }
-    }).done(function()
-    {
-      console.log(data)
     })
+  })
 }) 
 
 
