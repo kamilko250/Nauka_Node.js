@@ -54,12 +54,14 @@ io.on('connection', socket => {
     setInterval(function(){
         io.emit('number', Math.random()* 255)
     },freq)
+
     socket.on('disconnect',()=>{
         console.log('disconnected')
     })
+
     socket.on("freq", (data)=>{
         console.log(Number(data))
-        freq = data
+        freq = Number(data)
     })
 })
 
