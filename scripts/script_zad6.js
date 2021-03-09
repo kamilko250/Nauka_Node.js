@@ -16,6 +16,6 @@ $(document).ready(() => {
         return false
     })
     socket.on('number', (data)=>{
-        $("#display").text(data)
+        $("#display").text(data.toFixed(2))
     })
 })

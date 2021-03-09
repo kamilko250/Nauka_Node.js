@@ -52,7 +52,7 @@ io.on('connection', socket => {
     console.log("connected")
     setInterval(function(){
         io.emit('number', Math.random()* 255)
-    },500)
+    },1000)
     socket.on('disconnect',()=>{
         console.log('disconnected')
     })
