@@ -49,12 +49,17 @@ app.use(zad6)
 
 
 io.on('connection', socket => { 
+    var freq = 500
     console.log("connected")
     setInterval(function(){
         io.emit('number', Math.random()* 255)
-    },1000)
+    },freq)
     socket.on('disconnect',()=>{
         console.log('disconnected')
+    })
+    socket.on("freq", (data)=>{
+        console.log(Number(data))
+        freq = data
     })
 })
 

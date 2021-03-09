@@ -6,11 +6,14 @@
     <header>
     <%- include("navigation.ejs") %>
     </header> 
-    <div style="text-align: center;">
+    <div style="text-align: center; margin: 10;">
+        <label>Częstotliwość (raz na 0.5s-3s, skok 500ms)</label><br/>
+        <input type="range" id="input_range" min="500" max="3000" step="500"></input><br/></br>
         <input type="button"  id="button_on" value="Zarejestruj"></input>
         <input type="button"  id="button_off" value="Wyrejestruj"></input>
     </div>
     <div style="text-align: center;" id="status"></div>
+    <div style="text-align: center;" id="freq"></div>
     <div style="text-align: center;" id="display"></div>
     <script src="scripts/script_zad6.js"></script>
 </body>
