@@ -50,6 +50,9 @@ app.use(zad6)
 
 io.on('connection', socket => { 
     console.log("connected")
+    setInterval(function(){
+        io.emit('number', Math.random()* 255)
+    },500)
     socket.on('disconnect',()=>{
         console.log('disconnected')
     })
