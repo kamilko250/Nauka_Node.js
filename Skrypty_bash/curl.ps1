@@ -1,0 +1,1 @@
+curl -X POST "http://fresh-techdev.online/zad5" -H "Content-Type: application/json" -d "{\"min\":\"1\",\"max\":\"2\"}"
