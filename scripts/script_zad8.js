@@ -3,13 +3,13 @@ $(document).ready(() => {
     $("#date_form").submit( event =>{
         $("#date_form").hide()
         $.post("zad8/logsrequest", {
-            "date": 1,
-            "time": 4
+            "date": $("#input_date").val(),
+            "time": $("#input_time").val()
         }, 
         (data, status) => {
             console.log(status)
             console.log(data)
-            CreateTable($("#logs_table", data))
+            CreateTable($("#logs_table"), data)
 
         })
         event.preventDefault()
@@ -22,6 +22,7 @@ $(document).ready(() => {
     })
     function CreateTable(table, data)
     {
+        table.empty()
         console.log(typeof(data))
         if(typeof(data) != "undefined")
         {
