@@ -45,6 +45,10 @@ const zad5 = require('./routes/zad5.js')
 app.use(zad5)
 const zad6 = require('./routes/zad6.js')
 app.use(zad6)
+const zad7 = require('./routes/zad7.js')
+app.use(zad7)
+const zad8 = require('./routes/zad8.js')
+app.use(zad8)
 
 
 
