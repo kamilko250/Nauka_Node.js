@@ -1,25 +1,44 @@
 <head>
     <%- include("head.ejs") %>
     <script src="https://cdn.socket.io/3.1.1/socket.io.min.js" integrity="sha384-gDaozqUvc4HTgo8iZjwth73C6dDDeOJsAgpxBcMpZYztUfjHXpzrpdrHRdVp8ySO" crossorigin="anonymous"></script>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        th, td {
+          padding: 15px;
+        }
+        </style>
 </head>  
 <body>
     <header>
     <%- include("navigation.ejs") %>
     </header> 
     <div style="text-align: center;">
-        <form>
-            <h4>Find log.</h4>
-            <label>ID</label><br/>
-            <input type="number"></input><br/>
-            <label>Date</label><br/>
+        <form id="date_form">
+            <h4>Find log</h4>
+            <label>Date</label>
             <input type="date"></input><br/>
-            <label>File</label><br/>
-            <input type="text"></input><br/>
-            <label>Line</label><br/>
-            <input type="number"></input><br/>
-            <label>Message</label><br/>
-            <input type="text"></input><br/><br/>
+            <label>Time</label>
+            <input type="time"></input><br/>
             <input type="submit" value="Search"></input><br/>
         </form>
     </div>
+    <div style="text-align: center;">
+        <form id="data_form">
+            <h4>Find log</h4>
+            <label>Date</label>
+            <input type="date"><br/>
+            <input type="submit" value="Search"></input><br/>
+        </form>
+    </div>
+    <input style="margin: 10px;" id="show" type="button" value="Show"/>
+    <div style="text-align: center; ">
+        <table id="logs_table">
+        </table>
+    </div>
+    <script src="scripts/script_zad8.js"></script>
 </body>
