@@ -2,13 +2,13 @@ $(document).ready(() => {
     $("#data_form").hide()
     $("#date_form").submit( event =>{
         $("#date_form").hide()
-        $.post("zad8/logsrequest", {
+        $.post("/zad8/logsrequest", {
             "date": $("#input_date").val(),
             "time": $("#input_time").val()
         }, 
         (data, status) => {
             console.log(status)
-            console.log(data)
+            //console.log(data)
             CreateTable($("#logs_table"), data)
 
         })
