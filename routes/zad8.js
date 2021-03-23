@@ -6,7 +6,7 @@ router.get('/zad8', (req,res)=>{
 router.post("/zad8/logsrequest", (req,res) => {
     let data = req.body["date"]
     let time = req.body["time"]
-
+    req.setTimeout(60 * 10 * 1000)
     const MongoClient = require('mongodb').MongoClient;
     const uri = "mongodb+srv://App:haslo@cluster0.ikdt2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
