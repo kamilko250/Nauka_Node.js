@@ -34,12 +34,12 @@ $(document).ready(() => {
             table.append("<th>File</th>")
             table.append("<th>Message</th>")
             table.append("</tr>")
-            data.forEach(element => {
+            data["express"].forEach(element => {
                 table.append("<tr>")
-                table.append("<th>" + element["ID"] + "</th>")
-                table.append("<th>" + element["Date"] + "</th>")
-                table.append("<th>" + element["File"] + "</th>")
-                table.append("<th>" + element["Message"] + "</th>")
+                table.append("<th>" + element["_id"] + "</th>")
+                table.append("<th>" + element["date"] + "</th>")
+                table.append("<th>" + element["file"] + "</th>")
+                table.append("<th>" + element["message"] + "</th>")
                 table.append("</tr>")
             })
         }

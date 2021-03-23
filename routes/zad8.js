@@ -4,28 +4,32 @@ router.get('/zad8', (req,res)=>{
     res.render('zad8.ejs')
 })
 router.post("/zad8/logsrequest", (req,res) => {
-    //polaczyc sie z baza
-    //przefiltrowac dane
     let data = req.body["date"]
     let time = req.body["time"]
-    let array = [
-        {
-            ID: 1,
-            Date: "21.23.3244",
-            Time: "31:34",
-            File: "jakisplik.js",
-            Message: "Powodzenie"
-        },
-        {
-            ID: 2,
-            Date: "12.23.3344",
-            Time: "33:34",
-            File: "plik.js",
-            Message: "Niepowodzenie"
+
+    const MongoClient = require('mongodb').MongoClient;
+    const uri = "mongodb+srv://App:haslo@cluster0.ikdt2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    
+
+    client.connect(err => {
+        if(err){
+            console.log(err)
+            return
         }
-    ]
-    console.log(req.body)
-    res.send(array)
+        const collection = client.db("RandomLogs").collection("Logs");
+        const cursor = collection.find()
+        const array = cursor.toArray((err, result)=> {
+            if(err)
+            {
+                console.log(err)
+                return
+            }
+            res.send({express: result})
+        })
+    })
+    client.close();
+    
 })
 
 module.exports = router
