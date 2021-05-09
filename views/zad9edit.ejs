@@ -1,0 +1,14 @@
+<head>
+    <%- include("head.ejs") %>
+</head>
+<body>
+    <header>
+    <%- include("navigation.ejs") %>
+    </header>
+    <form action="/zad9/editconfirm" id="edit" method="get">
+        <label> Word <%- word %> to edit </label><br/>
+        <label> New word: </label>
+        <input id="word_edit"></input>
+        <input type="submit" value="Confirm"></input>
+    </form>
+</body>

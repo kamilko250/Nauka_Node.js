@@ -1,0 +1,32 @@
+<head>
+    <%- include("head.ejs") %>
+</head>
+<body>
+    <header>
+        <%- include("navigation.ejs") %>
+    </header> 
+    <div style="text-align: center;">
+        <form id="words">
+            <h4>Add word</h4>
+            <label>Word</label>
+            <input id="word" type="text"></input><br/>
+            <input type="submit" value="Add"></input><br/>
+        </form>
+    </div>
+    <div>
+        <% if(locals.words) { %>
+            <h3> Wyniki </h3><br/>
+            <ul>
+                <% worlds.forEach( result => { %>
+                    <li><%- result %></li>
+                    <form action="/zad9/edit?word=<%-result%>" id="edit" method="get">
+                        <input type="submit" value = "Edit" ></input>
+                    </form>
+                    <form action="/zad9/delete?word=<%-result%>" id="delete" method="get">
+                        <input type="submit" value = "Delete" ></input>
+                    </form>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+</body>

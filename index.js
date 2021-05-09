@@ -8,7 +8,7 @@ const app = express()
 const server = http.createServer(app)
 const render  = require('ejs')
 const cookieParser = require('cookie-parser')
-server.listen(process.env.PORT)
+server.listen(443)
 const io = require('socket.io')(server)
 
 app.use(express.urlencoded({extended: true}))
@@ -49,6 +49,8 @@ const zad7 = require('./routes/zad7.js')
 app.use(zad7)
 const zad8 = require('./routes/zad8.js')
 app.use(zad8)
+const zad9 = require('./routes/zad9.js')
+app.use(zad9)
 
 
 
