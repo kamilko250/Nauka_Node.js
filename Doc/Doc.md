@@ -1,4 +1,4 @@
-#Wyświetlenie elementów w liście:
+### Wyświetlenie elementów w liście:
 
 > curl -X GET "**127.0.0.1:8080**/zad9"
 
@@ -6,7 +6,7 @@ W miejsce **127.0.0.1:8080** wpisujemy adres servera do którego się odwołujem
 
 [tu znajdziesz odpowiedź serwera](getresponse.html)
 
-#Dodanie elementu do list:
+### Dodanie elementu do list:
 
 > curl -X POST "**127.0.0.1:8080**/zad9" -H "Content-Type: application/json" -d "{\"word\":\"**89**\"}"
 
@@ -14,7 +14,7 @@ W miejsce **89** wstawia się pożądany element, zostanie zwrócona odpowiedź 
 
 [tu znajdziesz odpowiedź serwera](addresponse.html)
 
-#Usunięcie elementu z list: 
+### Usunięcie elementu z list: 
 
 > curl -X POST "**127.0.0.1:8080**/zad9/delete" -H "Content-Type: application/json" -d "{\"word\":\"**89**\"}"
 
@@ -22,7 +22,7 @@ W miejsce **89** wstawia się pożądany element, zostanie zwrócona odpowiedź 
 
 [tu znajdziesz odpowiedź serwera](deleteresponse.html)
 
-#Edycja elementu list: 
+### Edycja elementu list: 
 
 > curl -X POST "*127.0.0.1:8080*/zad9/edit" -H "Content-Type: application/json" -d "{\"word_edit\":\"**1234**\",\"word_old\":\"**89**\"}"
 
