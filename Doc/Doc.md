@@ -4,7 +4,7 @@
 
 W miejsce **127.0.0.1:8080** wpisujemy adres servera do którego się odwołujemy
 
-[tu znajdziesz odpowiedź serwera](getresponse.html)
+[tu znajdziesz odpowiedź serwera](getresponse.json)
 
 ### Dodanie elementu do list:
 
@@ -12,7 +12,7 @@ W miejsce **127.0.0.1:8080** wpisujemy adres servera do którego się odwołujem
 
 W miejsce **89** wstawia się pożądany element, zostanie zwrócona odpowiedź - plik html z nowo dodanym elementem
 
-[tu znajdziesz odpowiedź serwera](addresponse.html)
+[tu znajdziesz odpowiedź serwera](addresponse.json)
 
 ### Usunięcie elementu z list: 
 
@@ -20,7 +20,7 @@ W miejsce **89** wstawia się pożądany element, zostanie zwrócona odpowiedź 
 
 W miejsce **89** wstawia się pożądany element, zostanie zwrócona odpowiedź - plik html bez podanego elementu
 
-[tu znajdziesz odpowiedź serwera](deleteresponse.html)
+[tu znajdziesz odpowiedź serwera](deleteresponse.json)
 
 ### Edycja elementu list: 
 
@@ -28,7 +28,7 @@ W miejsce **89** wstawia się pożądany element, zostanie zwrócona odpowiedź 
 
  W miejsce **89** wstawia się pożądany element do zmiany, natomiast w miejsce **1234** nowe słowo, zostanie zwrócona odpowiedź - plik html z zmienionym elementem elementu
 
-[tu znajdziesz odpowiedź serwera](editresponse.html)
+[tu znajdziesz odpowiedź serwera](editresponse.json)
 
 
 
