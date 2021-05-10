@@ -9,11 +9,10 @@
         <%- include("navigation.ejs") %>
     </header> 
     <div style="text-align: center;">
-        <form method="POST" method="POST">
-            <h4>Add word</h4>
+        <form method="POST">
             <label>Word</label>
-            <input type="text" name="word"></input><br/>
-            <input type="submit" value="Add"></input><br/>
+            <input type="text" name="word"></input>
+            <input type="submit" value="Add"></input>
         </form>
     </div>
     <div style="text-align: center;">
@@ -24,13 +23,13 @@
                     <li>
                         <span><%= result %></span>
                         <div>
-                            <form style="display: inline-block;" action="/zad9/edit" method="post">
+                            <form style="display: inline-block;" method="put">
                                 <input type="hidden" name="word" value="<%=result%>"> 
                                 <input type="submit" value = "Edit" ></input>
                             </form>
                         </div>
                         <div> 
-                            <form style="display: inline-block;" action="/zad9/delete" method="post">
+                            <form style="display: inline-block;" method="delete">
                                 <input type="hidden" name="word" value="<%=result%>"> 
                                 <input type="submit" value="Delete" ></input>
                             </form>
