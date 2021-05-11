@@ -8,8 +8,9 @@ const app = express()
 const server = http.createServer(app)
 const render  = require('ejs')
 const cookieParser = require('cookie-parser')
-server.listen(process.env.PORT ?? 8080, () => {
-    console.log("Port" + process.env.PORT ?? 8080)
+var port = process.env.PORT ?? 8080
+server.listen(port, () => {
+    console.log("Port: " + port)
 })
 const io = require('socket.io')(server)
 

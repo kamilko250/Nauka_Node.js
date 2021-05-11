@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "9988a004-470b-4960-8630-d183d28bb60c",
+		"name": "col1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/zad9",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "word",
+							"value": "2345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/zad9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"zad9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/zad9",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Id",
+							"value": "7434",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/zad9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"zad9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/zad9",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Id",
+							"value": "7299",
+							"type": "text"
+						},
+						{
+							"key": "new_word",
+							"value": "23333",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/zad9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"zad9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

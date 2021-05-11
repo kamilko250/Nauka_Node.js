@@ -21,17 +21,18 @@
             <ul>
                 <% words.forEach( result => { %>
                     <li>
-                        <span><%= result %></span>
+                        <span><%= result.word %></span>
                         <div>
                             <form style="display: inline-block;" method="put">
-                                <input type="hidden" name="word" value="<%=result%>"> 
-                                <input type="submit" value = "Edit" ></input>
+                                <input type="hidden" name="Id" value="<%=result.Id%>"> 
+                                <input type="text" name="new_word">
+                                <input type="submit" value = "Edit">
                             </form>
                         </div>
                         <div> 
                             <form style="display: inline-block;" method="delete">
-                                <input type="hidden" name="word" value="<%=result%>"> 
-                                <input type="submit" value="Delete" ></input>
+                                <input type="hidden" name="Id" value="<%=result.Id%>"> 
+                                <input type="submit" value="Delete">
                             </form>
                         </div>
                     </li>
