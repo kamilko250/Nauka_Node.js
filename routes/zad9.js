@@ -1,12 +1,9 @@
 const express = require('express')
-const lodash = require('lodash')
 const router = express.Router()
-const min = 1
-const max = 9999
 
-var DB  = []
+var DB = []
 router.get('/zad9', (req, res) => {
-    res.send({words: DB})
+    res.render("zad9.ejs", {words: DB})
 })
 router.post('/zad9', (req, res) => {
     let word = req.body["word"]
@@ -15,14 +12,16 @@ router.post('/zad9', (req, res) => {
 })
 router.delete('/zad9', (req, res) => {
     let word = req.body["word"]
-    lodash.remove(DB, x => x == word)
+    let pos = DB.indexOf(word)
+    if(pos != undefined)
+        DB.splice(pos, 1)
     res.send({words: DB})
 })
 router.put('/zad9', (req, res) => {
     let word = req.body["word"]
-    let item = lodash.find(DB, x => x == word)
-    if(item != undefined)
-        item = req.body["new_word"]
+    let pos = DB.indexOf(word)
+    if(pos != undefined)
+        DB[pos] = req.body["new_word"]
     res.send({words: DB})
 })
 module.exports = router
