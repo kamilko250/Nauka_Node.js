@@ -22,7 +22,7 @@ router.put('/zad9', (req, res) => {
     let word = req.body["word"]
     let item = lodash.find(DB, x => x == word)
     if(item != undefined)
-        item.word = req.body["new_word"]
+        item = req.body["new_word"]
     res.send({words: DB})
 })
 module.exports = router
