@@ -7,7 +7,7 @@ router.get('/zad9', (req, res) => {
 })
 router.post('/zad9', (req, res) => {
     let word = req.body["word"]
-    DB.push(new Word(word))
+    DB.push(word)
     res.send({words: DB})
 })
 router.delete('/zad9', (req, res) => {
